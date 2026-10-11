@@ -3,15 +3,15 @@
 #include <chrono>
 using namespace std;
 
-int board[20];
+int board[20]; // STORES THE COL
 bool col[20], diag1[40], diag2[40];
-long long solutions = 0, calls = 0;
+long long solutions = 0, calls = 0; // AVOIDS CONFLICT
 int n;
 
 void solve(int row) {
     calls++;
 
-    if (row == n) {
+    if (row == n) { // BASE CASE==> ALL QUEENS  HAVE BEEN PLACED SUCCESSFULLY 
         solutions++;
         cout << "\nSolution " << solutions << ":\n";
         for (int i = 0; i < n; i++) {
@@ -30,9 +30,9 @@ void solve(int row) {
             board[row] = c;
             col[c] = diag1[d1] = diag2[d2] = true;
 
-            solve(row + 1);
+            solve(row + 1); // RECURSIVE CALL
 
-            col[c] = diag1[d1] = diag2[d2] = false;
+            col[c] = diag1[d1] = diag2[d2] = false; // BACKTRACKING
         }
     }
 }
